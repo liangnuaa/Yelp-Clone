@@ -3,7 +3,7 @@ var express     = require("express"),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
     Campground  = require("./models/campground"),
-    Comment     = require("./models/comment"),
+    // Comment     = require("./models/comment"),
     seedDB     = require("./seeds");
     
 seedDB();
@@ -66,14 +66,15 @@ app.post("/campgrounds", function (req, res) {
 //NEW - show form to create new campground
 app.get("/campgrounds/new", function(req, res) {
     res.render("new");
-})
+});
 
 // SHOW - shows more info about one campground
 app.get("/campgrounds/:id", function(req, res) {
-    Campground.findById(req.params.id, function (err, foundCampground) {
+    Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
         if (err) {
             console.log(err);
         } else {
+            console.log(foundCampground);
             res.render("show", {campground: foundCampground});    
         }
     });
