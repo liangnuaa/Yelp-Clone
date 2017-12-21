@@ -6,17 +6,17 @@ var data = [
     {
         name: "Cloud's Rest", 
         image: "https://farm4.staticflickr.com/3795/10131087094_c1c0a1c859.jpg",
-        description: "blah blah blah"
+        description: "Alcatra drumstick landjaeger rump, swine turkey filet mignon. Alcatra buffalo ground round filet mignon t-bone meatball shank shankle pork belly. Shank cow ball tip biltong t-bone, turkey tail tenderloin chicken alcatra pig jowl cupim spare ribs swine. Corned beef sausage rump porchetta, beef ribs pork loin ball tip fatback tri-tip flank turkey sirloin. Bacon venison picanha kevin."
     },
     {
         name: "Desert Mesa", 
         image: "https://farm1.staticflickr.com/454/19246699713_77cf826d62.jpg",
-        description: "blah blah blah"
+        description: "Alcatra drumstick landjaeger rump, swine turkey filet mignon. Alcatra buffalo ground round filet mignon t-bone meatball shank shankle pork belly. Shank cow ball tip biltong t-bone, turkey tail tenderloin chicken alcatra pig jowl cupim spare ribs swine. Corned beef sausage rump porchetta, beef ribs pork loin ball tip fatback tri-tip flank turkey sirloin. Bacon venison picanha kevin"
     },
     {
         name: "Canyon Floor", 
         image: "https://farm1.staticflickr.com/189/493046463_841a18169e.jpg",
-        description: "blah blah blah"
+        description: "Tenderloin beef landjaeger kevin pork beef ribs hamburger tri-tip. Ham biltong turkey beef pork belly meatloaf. Swine brisket beef pancetta filet mignon hamburger meatball spare ribs boudin short loin leberkas tongue. Spare ribs buffalo cow pork meatloaf. Shank pancetta strip steak jowl pork loin meatloaf pig cow chicken doner fatback chuck. Biltong ribeye brisket shankle prosciutto flank t-bone. Shank hamburger leberkas pancetta pastrami beef ribs beef, short ribs tongue burgdoggen bresaola."
     }
 ];
     
