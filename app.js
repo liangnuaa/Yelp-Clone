@@ -29,19 +29,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Campground.create(
-//     {
-//         name: "Granite Hill", 
-//         image: "https://farm4.staticflickr.com/3741/9586943706_b22f00e403.jpg",
-//         description: "Beautiful campground!!!"
-//     }, function (err, campground) {
-//     if (err) {
-//         console.log(err);
-//     }else {
-//         console.log("NEWLY CREATED CAMPGROUND");
-//         console.log(campground);
-//     }
-// });
+// add currentUser to middleware
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+   next();
+});
 
 
 // landing page
@@ -100,7 +92,7 @@ app.get("/campgrounds/:id", function(req, res) {
 // ====================
 // COMMENTS ROUTES
 // ====================
-app.get("/campgrounds/:id/comments/new", function(req, res) {
+app.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function (err, foundCampground) {
         if (err) {
             console.log(err);
@@ -110,7 +102,7 @@ app.get("/campgrounds/:id/comments/new", function(req, res) {
     });
 });
 
-app.post("/campgrounds/:id/comments", function (req, res) {
+app.post("/campgrounds/:id/comments", isLoggedIn, function (req, res) {
     //lookup campground using ID
    Campground.findById(req.params.id, function(err, campground){
        if(err){
@@ -154,6 +146,34 @@ app.post("/register", function(req, res){
         });
     });
 });
+
+// show login form
+app.get("/login", function(req, res){
+   res.render("login"); 
+});
+
+// handling login logic
+// app.post("/login", middleware, callback)
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/campgrounds",
+        failureRedirect: "/login"
+    }), function(req, res){
+});
+
+// logout route
+app.get("logout", function(req, res) {
+    req.logout();
+    res.redirect("/campgrounds");
+})
+
+// check login status
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.get("/*", function(req, res) {
     res.render("landing");
