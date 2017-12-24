@@ -41,9 +41,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // add currentUser to middleware
 app.use(function(req, res, next){
-   res.locals.currentUser = req.user;
-//   console.log(res.locals);
-   next();
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    next();
 });
 
 // requiring routes
@@ -51,9 +52,9 @@ app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
-app.get("/*", function(req, res) {
-    res.render("landing");
-});
+// app.get("/*", function(req, res) {
+//     res.render("landing");
+// });
 
 // Server listening
 app.listen(process.env.PORT, process.env.IP, function () {
